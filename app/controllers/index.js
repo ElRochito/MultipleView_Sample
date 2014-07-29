@@ -4,15 +4,16 @@ var init = function init_() {
     var _left = 10;
 
     for (var i = 0; i < 15; i++) {
-        var thumb = Ti.UI.createView({
+        var thumb = createCustomView({
             index: i,
-            clickable: true
+            clickable: true,
+            classes: ['thumb'],
+            label: createCustomLabel({
+                text: "Thumb " + i,
+                touchEnabled: false
+            })
         });
 
-        thumb.add(Ti.UI.createLabel({
-            text: "Thumb " + i,
-            touchEnabled: false
-        }));
 
         thumb.applyProperties($.createStyle({
             classes: ['thumb'],
@@ -23,6 +24,37 @@ var init = function init_() {
 
         _left += 200;
     };
+};
+
+var createCustomView = function createCustomView_(_settings) {
+    var thumb = Ti.UI.createView();
+
+    thumb.applyProperties(_settings);
+    thumb.applyProperties($.createStyle({
+        classes: _settings.classes
+    }));
+
+    thumb.add(_settings.label);
+
+    thumb.settings = _settings;
+
+    return thumb;
+};
+
+
+var createCustomLabel = function createCustomLabel_(_settings) {
+    var thumb = Ti.UI.createLabel();
+
+    thumb.applyProperties(_settings);
+    thumb.applyProperties($.createStyle({
+        classes: _settings.classes
+    }));
+
+    thumb.add(_settings.label);
+
+    thumb.settings = _settings;
+
+    return thumb;
 };
 
 var onClickThumb = function onClickThumb_(_event) {
@@ -54,14 +86,16 @@ var onClickThumb = function onClickThumb_(_event) {
 };
 
 var addToSelection = function addToSelection_() {
-    var n = thumbSelected;
-
+    var s = _.extend(thumbSelected.settings, {
+        left: 0
+    })
+    var n = createCustomView(s);
+    Ti.API.info(n)
     thumbSelected.setOpacity(0.6);
     //thumbSelected.parent = $.timeline;
 
     $.selection.add(n);
 
-    n.setOpacity(1);
 };
 
 $.add.addEventListener("singletap", addToSelection);
