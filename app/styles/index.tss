@@ -1,0 +1,29 @@
+".container": {
+	backgroundColor:"white"
+},
+
+"#timeline": {
+  top: 0,
+  height: "25%",
+  backgroundColor: "red"
+}
+
+"#selection": {
+  bottom: 0,
+  height: "25%",
+  backgroundColor: "blue"
+}
+
+".thumb": {
+  width: 180,
+  height: 100,
+  backgroundColor: "yellow"
+}
+
+".thumbSelected": {
+  borderWidth: 2,
+  borderColor: "#fff"
+}
+"#add": {
+  visible: false
+}

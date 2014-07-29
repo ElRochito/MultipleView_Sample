@@ -1,0 +1,7 @@
+<Alloy>
+	<Window class="container" fullscreen="true">
+		<ScrollView id="timeline" />
+    <Button id="add">Add to selection</Button>
+    <ScrollView id="selection" />
+	</Window>
+</Alloy>
